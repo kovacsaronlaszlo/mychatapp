@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
-import {AngularFireDatabase} from 'angularfire2/database';
+import {AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {Observable} from 'rxjs/Observable';
 
 import {ChatMessage} from '../models/chat-message.model';
-import {FirebaseListObservable} from "angularfire2/database-deprecated";
 
 @Injectable()
 export class ChatService {
