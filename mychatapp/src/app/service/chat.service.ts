@@ -18,17 +18,31 @@ export class ChatService {
       if (auth !== undefined && auth !== null) {
         this.user = auth;
       }
+
+      this.getUser().subscribe(a=>{
+        this.userName = a.displayName;
+      })
     });
   }
 
+  getUser() {
+    const userId = this.user.uid;
+    const path = `/user/${userId}`;
+    return this.db.object(path);
+  }
+
+  getUsers() {
+    const path = '/users';
+    return this.db.list(path);
+  }
+
   sendMessage(msg: string) {
-    const timeStamp = this.getTimeStamp();
+    const timestamp = this.getTimeStamp();
     const email = this.user.email;
     this.chatMessages = this.getMessages();
     this.chatMessages.push({
       message: msg,
-      timeSent: timeStamp,
-      username: this.userName,
+      timeSent: timestamp,
       email: email
     });
   }
